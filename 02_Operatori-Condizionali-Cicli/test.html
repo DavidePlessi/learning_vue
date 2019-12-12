@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            background: #20262E;
+            padding: 20px;
+            font-family: Helvetica;
+        }
+
+        #app {
+            background: #fff;
+            border-radius: 4px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .square {
+            border: 5px solid #000;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 50px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <template v-for="n in numeroElementi">
+            <div @click="selezionato = n" class="square" :style="styleCSS(n)">{{n}}</div>
+        </template>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            selezionato: 0,
+            numeroElementi: 10
+        },
+        methods: {
+            styleCSS: function (sel) {
+                if (sel == this.selezionato) {
+                    return {
+                        'border': '5px solid #000FFF',
+                        'color': '#000FFF',
+                        'font-size': '50px'
+                    };
+                }
+                return '';
+            }
+        }
+    });
+</script>
+
+</html>

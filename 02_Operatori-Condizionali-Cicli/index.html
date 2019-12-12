@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Vue</h1>
+        <hr>
+        <div id="app">
+            <hr />
+            <p>var: {{show}}</p>
+            <button @click="show = !show">Change</button>
+            <template v-if="show">
+                <div class="one">
+                    <h1>ONE</h1>
+                </div>
+            </template>
+            <template v-else>
+                <div class="two">
+                    <h1>TWO</h1>
+                </div>
+            </template>
+
+            <hr />
+
+            <div v-show="show" class="one">
+                <h1>ONE</h1>
+            </div>
+            <div v-show="!show" class="two">
+                <h1>TWO</h1>
+            </div>
+
+            <hr />
+            <h2>COLORS</h2>
+            <ul>
+                <li v-for="(color, index) in colors">{{color}}- {{index}}</li>
+            </ul>
+            <h2>NEWS</h2>
+            <ul>
+                <li v-for="(n, index) in news" :key="n.id">
+                    <h5>Number - {{index}}</h5>
+                    <p v-for="(attr, key) in n">
+                        {{key}}: {{attr}}
+                    </p>
+                </li>
+            </ul>
+
+            <hr />
+            <template v-for="num in 3">
+                <h2>COLORS</h2>
+                <ul>
+                    <li v-for="(color, index) in colors">{{color}}- {{index}}</li>
+                </ul>
+            </template>
+        </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            show: false,
+            colors: ['RED', 'BLUE', 'YELLOW', 'WHITE'],
+            news: [{
+                    id: Math.random(),
+                    name: 'Mouse',
+                    cash: '25'
+                },
+                {
+                    id: Math.random(),
+                    name: 'Camera',
+                    cash: '100'
+                },
+                {
+                    id: Math.random(),
+                    name: 'Display',
+                    cash: '250'
+                }
+            ]
+        },
+        mounted: {},
+        methods: {},
+    })
+</script>
+
+</html>
