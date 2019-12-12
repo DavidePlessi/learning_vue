@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Vue first application</h1>
+        <hr>
+        <div id="app">
+            <!-- <p>{{message}}</p>
+            <p>{{array[0]}}</p>
+            <p>{{car.color}}</p>
+            <p>{{linkImg}}</p>
+            <img v-once v-bind:src="linkImg">
+            <button @click="cambioImg">Change</button>
+            <div v-html="imgTag"></div> -->
+            <h2>Counter</h2>
+            <template v-if="min != max">
+                <p style="font-size: 12rem;">
+                    {{counter}}
+                </p>
+                <div class="row">
+                    <div class="col-6">
+                        <button style="font-size: 2rem;" :disabled='maxDisabled'
+                            @click="changeCounter($event, true)">+</button>
+                    </div>
+                    <div class="col-6">
+                        <button style="font-size: 2rem;" v-bind:disabled='minDisabled'
+                            v-on:click="changeCounter($event)">-</button>
+                    </div>
+                </div>
+                {{x}} - {{y}}
+                <div v-on:mousemove="updateCoordinate">
+                    <img src="https://fakeimg.pl/250x100/">
+                    <img v-on:mousemove.stop.preventDefault src="https://fakeimg.pl/250x100/ff0000/">
+                </div>
+                <input v-on:keyup.space="changeText" />
+            </template>
+            <template v-else>
+                <h1>ERROR!</h1>
+            </template>
+            <hr />
+            <h2>{{limiteF()}}</h2>
+            <h2>{{limit}}</h2>
+
+            <button @click="my">{{textMy}}</button>
+
+            <hr />
+            {{nome}}
+            <br>
+            <input v-model="nome">
+        </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            // message: 'Hellou',
+            // array: ['Davide', 'Alessandro'],
+            // car: {
+            //     color: 'Red',
+            //     radio: true
+            // },
+            // linkImg: 'https://michelenasti.com/images/vuejs.png',
+            // imgTag: "<img src='https://michelenasti.com/images/vuejs.png'>"
+            counter: '3',
+            min: '-20',
+            minDisabled: false,
+            max: '13',
+            maxDisabled: false,
+            x: 0,
+            y: 0,
+            textMy: 'Ehio',
+            nome: ''
+        },
+        mounted: function () {
+            console.log('Mounted');
+        },
+        methods: {
+            changeText() {
+                alert('changed');
+            },
+            updateCoordinate(event) {
+                this.x = event.clientX;
+                this.y = event.clientY
+            },
+            changeCounter(event, add) {
+                const res = parseInt(this.counter) + 1 * (add ? 1 : -1);
+                this.maxDisabled = res >= this.max;
+                this.minDisabled = res <= this.min;
+                this.counter = res;
+                this.linkImg = 'https://glue-labs.com/wp-content/uploads/2016/11/AAA.png';
+            },
+            limiteF() {
+                console.log('FUNCTION');
+                return this.counter <= 0 ? 'Minore' : 'Maggiore';
+            },
+            my() {
+                console.log('FUNCTION');
+                return this.textMy = Math.random();
+            }
+        },
+        computed: {
+            limit: function () {
+                console.log('COMPUTED');
+                return this.counter <= 0 ? 'Minore' : 'Maggiore';
+
+            }
+        },
+        watch: {
+            counter: function (value) {
+                if (value == 5)
+                    this.textMy = "Valore 5";
+            }
+        }
+    })
+</script>
+
+</html>
