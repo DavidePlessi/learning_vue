@@ -2,13 +2,19 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import vuetify from './plugins/vuetify';
-import FirstComponent from "./components/FirstComponent";
+
 Vue.config.productionTip = false;
-Vue.component('first-c', FirstComponent);
+
+export const eventBus = new Vue({
+  methods: {
+    colorChange(color){
+      this.$emit('colorChange', color)
+    }
+  }
+});
+
 new Vue({
   router,
   store,
-  vuetify,
   render: h => h(App)
 }).$mount('#app');
