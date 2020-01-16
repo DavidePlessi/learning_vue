@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+
+        <style>
+            .box {
+                padding: 10px;
+                border: 1px solid black;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Vue</h1>
+            <hr />
+            <div id="app1">
+                <!-- <div class="box"> -->
+                <!-- <h2 ref="title">{{message}}</h2> -->
+                <!-- <img :src="imgLink" @click="change" :alt=" message" width="100"> -->
+                <!-- </div> -->
+            </div>
+            <!-- <hr />
+        <div id="app2">
+            <div class="box">
+                <h2>{{message}}</h2>
+                <img :src="imgLink" :alt="message" width="100">
+                <br />
+                <button @click="change">Cambia 1</button>
+            </div>
+        </div> -->
+        </div>
+    </body>
+    <script>
+        var app1 = new Vue({
+            // el: '#app1',
+            //template: '<div class="box"><h2 ref="title">{{message}}</h2></div>',
+            data: {
+                message: 'Applicazione 1',
+                imgLink:
+                    'https://glue-labs.com/wp-content/uploads/2016/11/AAA.png'
+            },
+            methods: {
+                change() {
+                    //app1.message = "Cambiato da methods";
+                    this.$refs.title.innerText = 'Hi';
+                },
+                destroy() {
+                    this.$destroy();
+                }
+            },
+            beforeCreate: function() {
+                console.log('before create');
+            },
+            created: function() {
+                console.log('created');
+            },
+            beforeMount: function() {
+                console.log('beforeMount');
+            },
+            mounted: function() {
+                console.log('mounted');
+            },
+            beforeUpdate: function() {
+                console.log('beforeUpdate');
+            },
+            updated: function() {
+                console.log('updated');
+            },
+            beforeDestroy: function() {
+                console.log('beforeDestroy');
+            },
+            destroyed: function() {
+                console.log('destroyed');
+            }
+        });
+        console.log(app1);
+        console.log(app1.$refs.title);
+
+        app1.$mount('#app1');
+        // setTimeout(() => {
+        //     app1.$refs.title.innerText = "Hi";
+        // }, 2000);
+
+        // // Non è reattiva
+        // app1.nuovaProprieta = "new";
+        // app1.$data.message = "Hellow"
+        // console.log(app1);
+
+        // var app2 = new Vue({
+        //     el: '#app2',
+        //     data: {
+        //         message: "Applicazione 2",
+        //         imgLink: "https://glue-labs.com/wp-content/uploads/2016/11/AAA.png"
+        //     },
+        //     methods: {
+        //         change() {
+        //             //app1.message = "Cambiato";
+        //             app1.change();
+        //         }
+        //     },
+        // });
+    </script>
+</html>
