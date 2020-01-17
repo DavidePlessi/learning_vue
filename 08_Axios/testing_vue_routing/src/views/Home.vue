@@ -2,17 +2,11 @@
   <div class="home">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          Benvenuto : {{ getNome }}
-        </div>
-      </div>
-      <hr>
-      <div class="row">
         <div class="col-md-6">
-          <profile-component></profile-component>
+          <profile-component/>
         </div>
         <div class="col-md-6">
-          <profile-detail-component></profile-detail-component>
+          <h1>HOME</h1>
         </div>
       </div>
 
@@ -22,8 +16,7 @@
 
 <script>
   // @ is an alias to /src
-  import ProfileDetailComponent from '@/components/DetailProfile.vue'
-  import ProfileComponent from '@/components/NewProfile.vue'
+  import ProfileComponent from "../components/profile/NewProfile";
   import {mapGetters} from "vuex";
   export default {
     name: 'home',
@@ -43,7 +36,6 @@
       ])
     },
     components: {
-      'profile-detail-component' : ProfileDetailComponent,
       'profile-component' : ProfileComponent
     }
   }
